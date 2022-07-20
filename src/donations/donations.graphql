@@ -1,0 +1,46 @@
+scalar DateTime
+
+type Donation {
+  id: Int!
+  count: Int!
+  displayName: String!
+  email: String!
+  mobile: String
+  team: String
+  message: String
+  createdAt: DateTime
+  aggregate: Int
+}
+
+type Aggregate {
+  count: Int
+}
+
+input OrderByParams {
+  field: String
+  direction: String
+}
+
+input CreateDonationInput {
+  count: Int!
+  displayName: String!
+  email: String!
+  mobile: String
+  team: String
+  message: String
+  createdAt: DateTime
+}
+
+input UpdateDonationInput {
+  id: Int!
+}
+
+type Query {
+  donations(orderBy: OrderByParams, skip: Int, take: Int): [Donation]!
+  donation(id: Int!): Donation
+  donation_aggregate: Aggregate
+}
+
+type Mutation {
+  createDonation(createDonationInput: CreateDonationInput!): Donation!
+}
